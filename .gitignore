@@ -1,0 +1,19 @@
+# Archivos de provisión
+provision/
+
+# Variables de entorno
+.env
+
+# Docker
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

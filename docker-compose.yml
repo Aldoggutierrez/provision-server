@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  provision-server:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - UPLOAD_API_KEY=${UPLOAD_API_KEY:-changeme}
+    volumes:
+      - ./provision:/usr/share/nginx/html/provision
+    restart: unless-stopped
