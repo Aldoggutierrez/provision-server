@@ -22,7 +22,7 @@ docker run -d \
   -p 8080:80 \
   -e UPLOAD_API_KEY=your_secret_key \
   -v $(pwd)/provision:/usr/share/nginx/html/provision \
-  ghcr.io/your-username/provision-server:latest
+  ghcr.io/aldoggutierrez/provision-server:latest
 ```
 
 ### Docker Compose
