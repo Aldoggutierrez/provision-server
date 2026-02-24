@@ -1,28 +1,28 @@
-# Servidor de Provisión Grandstream
+# Grandstream Provisioning Server
 
-Servidor web para provisionamiento de archivos de configuración de teléfonos Grandstream.
+Web server for provisioning configuration files for Grandstream phones.
 
-## Características
+## Features
 
-- Servidor nginx con PHP para servir archivos de configuración XML
-- Endpoint protegido con API key para subir archivos
-- Contenedor Docker listo para producción
-- GitHub Actions para build automático
+- Nginx server with PHP for serving XML configuration files
+- API key protected endpoint for uploading files
+- Production-ready Docker container
+- GitHub Actions for automated builds
 
-## Uso con Docker
+## Docker Usage
 
-### Variables de entorno
+### Environment Variables
 
-- `UPLOAD_API_KEY`: Clave API para proteger el endpoint de subida de archivos
+- `UPLOAD_API_KEY`: API key to protect the file upload endpoint
 
-### Ejecutar el contenedor
+### Run the Container
 
 ```bash
 docker run -d \
   -p 8080:80 \
-  -e UPLOAD_API_KEY=tu_clave_secreta \
+  -e UPLOAD_API_KEY=your_secret_key \
   -v $(pwd)/provision:/usr/share/nginx/html/provision \
-  ghcr.io/tu-usuario/provision-server:latest
+  ghcr.io/your-username/provision-server:latest
 ```
 
 ### Docker Compose
@@ -33,21 +33,21 @@ docker-compose up -d
 
 ## Endpoints
 
-- `GET /provision/*.xml` - Archivos de provisión (acceso público para teléfonos)
-- `POST /upload` - Subir archivos XML (requiere header `X-API-Key`)
-- `GET /upload` - Listar archivos XML disponibles (requiere header `X-API-Key`)
+- `GET /provision/*.xml` - Provisioning files (public access for phones)
+- `POST /upload` - Upload XML files (requires `X-API-Key` header)
+- `GET /upload` - List available XML files (requires `X-API-Key` header)
 
-## Subir archivos
+## Upload Files
 
 ```bash
 curl -X POST \
-  -H "X-API-Key: tu_clave_secreta" \
+  -H "X-API-Key: your_secret_key" \
   -F "file=@config.xml" \
   http://localhost:8080/upload
 ```
 
 ## CI/CD
 
-El proyecto usa GitHub Actions para construir y publicar automáticamente la imagen Docker a GitHub Container Registry cuando se hace push a la rama `main`.
+The project uses GitHub Actions to automatically build and publish the Docker image to GitHub Container Registry when pushing to the `main` branch.
 
-La imagen está disponible en: `ghcr.io/tu-usuario/provision-server:latest`
+The image is available at: `ghcr.io/your-username/provision-server:latest`
