@@ -11,7 +11,7 @@ COPY upload.php /usr/share/nginx/html/upload.php
 RUN mkdir -p /usr/share/nginx/html/provision
 RUN chown -R nobody:nobody /usr/share/nginx/html/provision
 
-COPY entrypoint.sh /entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
